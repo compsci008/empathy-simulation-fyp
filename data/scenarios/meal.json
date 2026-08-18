@@ -1,0 +1,109 @@
+{
+  "id": "meal",
+  "order": 2,
+  "title": "Prepare a simple meal",
+  "description": "Manage standing time, reaching, and fatigue while preparing food.",
+  "status": "Implemented",
+  "available": true,
+  "learningObjective": "Understand how fatigue, standing time, and workspace setup affect safe meal preparation.",
+  "context": "Mr. Lim wants to prepare a simple meal and remain involved in an everyday routine.",
+  "challenges": "Meal preparation may require standing, reaching, handling hot items, and moving around a workspace. Fatigue and pain can build gradually, making the task harder even when the activity looks simple.",
+  "challengeTags": ["Extended standing", "Reaching & hot items", "Fatigue builds gradually"],
+  "learningPoints": [
+    "Check the workspace supports safe reach.",
+    "Pace effort — rest before it's unsafe.",
+    "Support participation, don't take over."
+  ],
+  "taskEyebrow": "Meal preparation task",
+  "taskTitle": "Prepare food without overexertion.",
+  "taskDescription": "My legs are already tired and my knee is giving me more trouble than usual. I want to make my own meal today, but I know standing too long will wear me out fast. I need to think about how I do this before I push through.",
+  "tasks": [
+    {
+      "id": "stool",
+      "label": "Clear counter",
+      "correctReason": "Clearing the counter first means I don't have to reach awkwardly, and it gives me a safer workspace.",
+      "warning": "The counter is still cluttered. Starting now means I have to reach awkwardly, which raises my spill risk."
+    },
+    {
+      "id": "walker",
+      "label": "Sit to rest",
+      "correctReason": "Resting before I continue helps me manage my fatigue before I handle food or hot items.",
+      "warning": "Resting helps, but the cluttered surface still makes this harder and less safe for me."
+    },
+    {
+      "id": "kettle",
+      "label": "Prepare meal",
+      "correctReason": "Preparing the meal is safer now because my workspace is clear and I've conserved some energy.",
+      "warning": "I tried to prepare the meal before clearing space or resting. My fatigue rises quickly and a hot spill becomes more likely."
+    }
+  ],
+  "choices": {
+    "stool": "Clear counter",
+    "walker": "Sit to rest",
+    "kettle": "Prepare meal"
+  },
+  "actions": {
+    "stool": "Clear counter",
+    "walker": "Sit to rest",
+    "kettle": "Prepare meal"
+  },
+  "warnings": {
+    "stool": "The counter is still cluttered. Starting now means I have to reach awkwardly, which raises my spill risk.",
+    "walker": "Resting helps, but the cluttered surface still makes this harder and less safe for me.",
+    "kettle": "I tried to prepare the meal before clearing space or resting. My fatigue rises quickly and a hot spill becomes more likely."
+  },
+  "contextualWarnings": {
+    "1:kettle": "The counter is clear, but I haven't rested yet. Preparing the meal now means standing longer while I'm already fatigued."
+  },
+  "correctReasons": {
+    "stool": "Clearing the counter first means I don't have to reach awkwardly, and it gives me a safer workspace.",
+    "walker": "Resting before I continue helps me manage my fatigue before I handle food or hot items.",
+    "kettle": "Preparing the meal is safer now because my workspace is clear and I've conserved some energy."
+  },
+  "completion": "Safe sequence completed: the counter is clear, I've rested, and I can continue preparing the meal with less fatigue.",
+  "feedbackTitle": "You completed the meal preparation scenario.",
+  "feedback": "Preparing food is not only about cooking. For an elderly person with mobility limitations, standing time, reaching, heat, and fatigue all affect safety. Needing to pause and rest can also feel discouraging — a caregiver's patience here does more than protect his knee, it protects his sense that he's still capable of feeding himself.",
+  "summary": "Safe meal preparation means arranging the workspace, pacing effort, and using rest breaks before fatigue becomes unsafe.",
+  "insight": "A caregiver can prepare the workspace, keep frequently used items within reach, and encourage seated rest breaks while allowing the elderly person to remain involved.",
+  "impacts": [
+    "Advantage: a clear counter reduces awkward reaching and spill risk",
+    "Advantage: rest breaks reduce fatigue before handling hot items",
+    "Disadvantage: preparing safely takes longer than doing everything at once",
+    "Disadvantage: needing rest may feel frustrating or discouraging"
+  ],
+  "indicatorEffects": {
+    "pressure": 50,
+    "initialState": {
+      "energy": 100,
+      "balance": 55,
+      "kneePain": 70,
+      "confidence": 65,
+      "independence": 60,
+      "safety": 100,
+      "empathy": 60,
+      "pressure": 50
+    },
+    "decisions": {
+      "safe": {
+        "stool": { "energy": -6, "balance": 5, "kneePain": 0, "confidence": 4, "independence": 7, "safety": 8, "empathy": 3, "pressure": -3 },
+        "walker": { "energy": 8, "balance": 3, "kneePain": -4, "confidence": 6, "independence": 4, "safety": 7, "empathy": 5, "pressure": -6 },
+        "kettle": { "energy": -16, "balance": 2, "kneePain": 5, "confidence": 6, "independence": 9, "safety": 6, "empathy": 2, "pressure": -2 }
+      },
+      "unsafe": {
+        "stool": { "energy": -8, "balance": -8, "kneePain": 6, "confidence": -8, "independence": -5, "safety": -14, "empathy": -4, "pressure": 7 },
+        "walker": { "energy": -3, "balance": -4, "kneePain": 4, "confidence": -5, "independence": -4, "safety": -8, "empathy": -3, "pressure": 5 },
+        "kettle": { "energy": -18, "balance": -10, "kneePain": 12, "confidence": -13, "independence": -8, "safety": -20, "empathy": -6, "pressure": 10 }
+      }
+    },
+    "caregiver": {
+      "guided-support": { "energy": 0, "balance": 2, "kneePain": -2, "confidence": 8, "independence": 15, "safety": 8, "empathy": 20, "pressure": -8 },
+      "take-over": { "energy": 5, "balance": 0, "kneePain": -1, "confidence": -10, "independence": -18, "safety": 6, "empathy": -4, "pressure": -4 },
+      "rush": { "energy": -8, "balance": -10, "kneePain": 8, "confidence": -15, "independence": -8, "safety": -18, "empathy": -18, "pressure": 15 }
+    },
+    "sceneEffects": {
+      "stool": { "className": "unsafe-spill", "label": "Cluttered counter" },
+      "walker": { "className": "unsafe-fatigue", "label": "Fatigue building" },
+      "kettle": { "className": "unsafe-spill", "label": "Spill risk" }
+    }
+  }
+}

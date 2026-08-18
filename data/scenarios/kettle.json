@@ -1,0 +1,106 @@
+{
+  "id": "kettle",
+  "order": 1,
+  "title": "Get the kettle for tea",
+  "description": "Navigate a cluttered kitchen path, use a walking aid, and reach the kettle safely.",
+  "status": "Implemented",
+  "available": true,
+  "learningObjective": "Understand how obstacles, mobility support, and fatigue affect safe kitchen navigation.",
+  "context": "Mr. Lim wants to make tea, but he needs to move through a narrow kitchen area before reaching the kettle.",
+  "challenges": "A simple kitchen task can become difficult when the walking path is cluttered, balance is reduced, and knee pain makes each movement slower. Reaching too quickly may increase fall risk.",
+  "challengeTags": ["Cluttered path", "Reduced balance", "Knee pain slows movement"],
+  "learningPoints": [
+    "Look for hazards before moving.",
+    "Support independence, don't replace it.",
+    "Allow time — don't rush."
+  ],
+  "taskEyebrow": "Kitchen navigation task",
+  "taskTitle": "Reach the kettle safely.",
+  "taskDescription": "My knee aches and my balance isn't steady today. I want to make my own tea, but the kitchen path ahead feels risky. I need to think about what to do first before I reach for anything.",
+  "tasks": [
+    {
+      "id": "stool",
+      "label": "Move stool",
+      "correctReason": "Clearing the obstacle first reduces my trip risk before I start moving through the narrow path.",
+      "warning": "The stool is already the first safety issue. Moving it creates a clearer path before I start walking."
+    },
+    {
+      "id": "walker",
+      "label": "Use walking aid",
+      "correctReason": "Using the walking aid gives me support before I try to reach across the kitchen.",
+      "warning": "I tried to continue without clearing the stool. That keeps my fall risk high, even though the walking aid helps."
+    },
+    {
+      "id": "kettle",
+      "label": "Reach kettle",
+      "correctReason": "Reaching the kettle is safer now because the path has been cleared and I already have support.",
+      "warning": "I tried to reach the kettle before clearing the path and using support. That increases my chance of tripping."
+    }
+  ],
+  "choices": {
+    "stool": "Move stool",
+    "walker": "Use walking aid",
+    "kettle": "Reach kettle"
+  },
+  "actions": {
+    "stool": "Move stool",
+    "walker": "Use walking aid",
+    "kettle": "Reach kettle"
+  },
+  "warnings": {
+    "stool": "The stool is already the first safety issue. Moving it creates a clearer path before I start walking.",
+    "walker": "I tried to continue without clearing the stool. That keeps my fall risk high, even though the walking aid helps.",
+    "kettle": "I tried to reach the kettle before clearing the path and using support. That increases my chance of tripping."
+  },
+  "correctReasons": {
+    "stool": "Clearing the obstacle first reduces my trip risk before I start moving through the narrow path.",
+    "walker": "Using the walking aid gives me support before I try to reach across the kitchen.",
+    "kettle": "Reaching the kettle is safer now because the path has been cleared and I already have support."
+  },
+  "completion": "Safe sequence completed: the path is clear, I'm using the walking aid, and I can reach the kettle with less risk.",
+  "feedbackTitle": "You completed the kettle scenario.",
+  "feedback": "The safe route took more time and effort, but it reduced the chance of falling. This shows how an ordinary task can become physically tiring when mobility, balance, and pain must be managed together. There's an emotional layer too: how support is offered shapes whether Mr Lim feels trusted to manage his own kitchen, or quietly reminded that he can't.",
+  "summary": "Safe kitchen navigation requires clearing hazards, using support, and allowing enough time for careful movement.",
+  "insight": "A caregiver can help by clearing hazards, placing mobility aids nearby, and giving the elderly person time to complete safe steps independently.",
+  "impacts": [
+    "Advantage: lower fall risk because the obstacle is cleared first",
+    "Advantage: walking aid improves balance and confidence",
+    "Disadvantage: the task takes longer and uses more energy",
+    "Disadvantage: repeated small movements may increase knee discomfort"
+  ],
+  "indicatorEffects": {
+    "pressure": 45,
+    "initialState": {
+      "energy": 100,
+      "balance": 55,
+      "kneePain": 70,
+      "confidence": 65,
+      "independence": 60,
+      "safety": 100,
+      "empathy": 60,
+      "pressure": 45
+    },
+    "decisions": {
+      "safe": {
+        "stool": { "energy": -8, "balance": 4, "kneePain": 0, "confidence": 3, "independence": 6, "safety": 8, "empathy": 3, "pressure": -4 },
+        "walker": { "energy": -8, "balance": 18, "kneePain": 1, "confidence": 10, "independence": 6, "safety": 10, "empathy": 2, "pressure": -5 },
+        "kettle": { "energy": -14, "balance": 3, "kneePain": 2, "confidence": 6, "independence": 8, "safety": 6, "empathy": 2, "pressure": -3 }
+      },
+      "unsafe": {
+        "stool": { "energy": -6, "balance": -8, "kneePain": 5, "confidence": -8, "independence": -5, "safety": -12, "empathy": -4, "pressure": 8 },
+        "walker": { "energy": -7, "balance": -6, "kneePain": 6, "confidence": -10, "independence": -6, "safety": -14, "empathy": -4, "pressure": 8 },
+        "kettle": { "energy": -10, "balance": -14, "kneePain": 10, "confidence": -14, "independence": -8, "safety": -22, "empathy": -6, "pressure": 12 }
+      }
+    },
+    "caregiver": {
+      "guided-support": { "energy": 0, "balance": 2, "kneePain": -2, "confidence": 8, "independence": 15, "safety": 8, "empathy": 20, "pressure": -8 },
+      "take-over": { "energy": 5, "balance": 0, "kneePain": -1, "confidence": -10, "independence": -18, "safety": 6, "empathy": -4, "pressure": -4 },
+      "rush": { "energy": -8, "balance": -10, "kneePain": 8, "confidence": -15, "independence": -8, "safety": -18, "empathy": -18, "pressure": 15 }
+    },
+    "sceneEffects": {
+      "stool": { "className": "unsafe-bump", "label": "Blocked path" },
+      "walker": { "className": "unsafe-bump", "label": "Stool still blocking" },
+      "kettle": { "className": "unsafe-fall", "label": "Trip risk" }
+    }
+  }
+}

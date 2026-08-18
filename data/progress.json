@@ -1,0 +1,30 @@
+{
+  "scenarios": {
+    "kettle": {
+      "id": "kettle",
+      "title": "Get the kettle for tea",
+      "score": 29,
+      "unsafeAttempts": 3,
+      "metrics": {
+        "energy": 38,
+        "balance": 44,
+        "kneePain": 100,
+        "safety": 56,
+        "empathy": 35,
+        "confidence": 35,
+        "independence": 52,
+        "pressure": 76
+      },
+      "caregiverChoice": {
+        "id": "rush",
+        "label": "Rush him",
+        "result": "Risky choice. Pressure increases."
+      },
+      "completedAt": "2026-08-13T07:14:49.339Z",
+      "reflection": {
+        "difficulty": "m",
+        "support": ","
+      }
+    }
+  }
+}

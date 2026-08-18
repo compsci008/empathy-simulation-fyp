@@ -1,0 +1,4 @@
+node_modules/
+data/empathy.db 
+data/empathy.db-shm 
+data/empathy.db-wal

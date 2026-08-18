@@ -1,0 +1,106 @@
+{
+  "id": "bathroom",
+  "order": 3,
+  "title": "Move to the bathroom",
+  "description": "Navigate urgency, privacy, and safe movement in a narrow space.",
+  "status": "Implemented",
+  "available": true,
+  "learningObjective": "Understand how urgency, visibility, support, and privacy affect bathroom safety.",
+  "context": "Mr. Lim needs to move to the bathroom, a private activity where he may still want to manage independently.",
+  "challenges": "Bathroom movement can involve urgency, narrow spaces, poor visibility, and embarrassment about needing help. These factors can increase pressure and make safe movement harder.",
+  "challengeTags": ["Urgency", "Narrow space", "Poor visibility", "Privacy"],
+  "learningPoints": [
+    "Check visibility and support first.",
+    "Respect privacy, keep support available.",
+    "Urgency raises pressure — slow down."
+  ],
+  "taskEyebrow": "Bathroom navigation task",
+  "taskTitle": "Move to the bathroom safely.",
+  "taskDescription": "I need the bathroom, and I can feel myself wanting to hurry. Rushing is exactly when I'm most likely to lose my footing in a space this narrow. I want to get there safely, on my own if I can.",
+  "tasks": [
+    {
+      "id": "stool",
+      "label": "Switch on light",
+      "correctReason": "Switching on the light first improves my visibility before I move through a narrow space.",
+      "warning": "Lighting is the first safety issue. Moving in dim light makes it harder for me to judge distance and obstacles."
+    },
+    {
+      "id": "walker",
+      "label": "Hold grab rail",
+      "correctReason": "Holding support improves my balance while I manage the urgency and my limited mobility.",
+      "warning": "The grab rail helps, but poor lighting still increases the chance I misjudge the narrow space."
+    },
+    {
+      "id": "kettle",
+      "label": "Enter bathroom",
+      "correctReason": "Entering the bathroom is safer now because I already have visibility and physical support in place.",
+      "warning": "I rushed toward the bathroom before improving visibility or holding support. The urgency increased my fall risk."
+    }
+  ],
+  "choices": {
+    "stool": "Switch on light",
+    "walker": "Hold grab rail",
+    "kettle": "Enter bathroom"
+  },
+  "actions": {
+    "stool": "Switch on light",
+    "walker": "Hold grab rail",
+    "kettle": "Enter bathroom"
+  },
+  "warnings": {
+    "stool": "Lighting is the first safety issue. Moving in dim light makes it harder for me to judge distance and obstacles.",
+    "walker": "The grab rail helps, but poor lighting still increases the chance I misjudge the narrow space.",
+    "kettle": "I rushed toward the bathroom before improving visibility or holding support. The urgency increased my fall risk."
+  },
+  "correctReasons": {
+    "stool": "Switching on the light first improves my visibility before I move through a narrow space.",
+    "walker": "Holding support improves my balance while I manage the urgency and my limited mobility.",
+    "kettle": "Entering the bathroom is safer now because I already have visibility and physical support in place."
+  },
+  "completion": "Safe sequence completed: the light is on, I have support, and I can enter the bathroom more safely.",
+  "feedbackTitle": "You completed the bathroom navigation scenario.",
+  "feedback": "Bathroom movement can be emotionally sensitive because it combines urgency, privacy, and physical risk. Rushing can make a familiar space dangerous. How a caregiver responds here says as much about respect as it does about safety — support that's available but not intrusive helps Mr Lim keep his dignity intact.",
+  "summary": "Safe bathroom support balances visibility, physical stability, urgency, privacy, and dignity.",
+  "insight": "A caregiver can improve lighting, install or encourage use of grab rails, and offer help in a way that protects privacy and dignity.",
+  "impacts": [
+    "Advantage: better lighting reduces uncertainty and trip risk",
+    "Advantage: grab rails support balance in narrow areas",
+    "Disadvantage: taking time may feel stressful during urgency",
+    "Disadvantage: accepting help with bathroom routines can feel embarrassing"
+  ],
+  "indicatorEffects": {
+    "pressure": 72,
+    "initialState": {
+      "energy": 100,
+      "balance": 52,
+      "kneePain": 70,
+      "confidence": 62,
+      "independence": 60,
+      "safety": 100,
+      "empathy": 60,
+      "pressure": 72
+    },
+    "decisions": {
+      "safe": {
+        "stool": { "energy": -4, "balance": 8, "kneePain": 0, "confidence": 5, "independence": 5, "safety": 10, "empathy": 4, "pressure": -6 },
+        "walker": { "energy": -8, "balance": 18, "kneePain": 1, "confidence": 9, "independence": 6, "safety": 11, "empathy": 3, "pressure": -5 },
+        "kettle": { "energy": -12, "balance": 2, "kneePain": 3, "confidence": 5, "independence": 7, "safety": 7, "empathy": 4, "pressure": -4 }
+      },
+      "unsafe": {
+        "stool": { "energy": -7, "balance": -12, "kneePain": 5, "confidence": -10, "independence": -5, "safety": -16, "empathy": -5, "pressure": 9 },
+        "walker": { "energy": -8, "balance": -8, "kneePain": 6, "confidence": -9, "independence": -5, "safety": -14, "empathy": -4, "pressure": 8 },
+        "kettle": { "energy": -14, "balance": -16, "kneePain": 10, "confidence": -14, "independence": -9, "safety": -24, "empathy": -7, "pressure": 12 }
+      }
+    },
+    "caregiver": {
+      "guided-support": { "energy": 0, "balance": 2, "kneePain": -2, "confidence": 8, "independence": 15, "safety": 8, "empathy": 20, "pressure": -8 },
+      "take-over": { "energy": 5, "balance": 0, "kneePain": -1, "confidence": -10, "independence": -18, "safety": 6, "empathy": -4, "pressure": -4 },
+      "rush": { "energy": -8, "balance": -10, "kneePain": 8, "confidence": -15, "independence": -8, "safety": -18, "empathy": -18, "pressure": 15 }
+    },
+    "sceneEffects": {
+      "stool": { "className": "unsafe-dark", "label": "Dim light" },
+      "walker": { "className": "unsafe-dark", "label": "Poor visibility" },
+      "kettle": { "className": "unsafe-rush", "label": "Rushed step" }
+    }
+  }
+}

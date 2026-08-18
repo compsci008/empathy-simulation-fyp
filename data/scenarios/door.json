@@ -1,0 +1,106 @@
+{
+  "id": "door",
+  "order": 4,
+  "title": "Answer the front door",
+  "description": "Respond to time pressure while moving carefully across the home.",
+  "status": "Implemented",
+  "available": true,
+  "learningObjective": "Understand how time pressure can affect safe movement and caregiver support decisions.",
+  "context": "The doorbell rings and Mr. Lim wants to answer the front door like he normally would.",
+  "challenges": "Time pressure can make an elderly person feel the need to move quickly. Sudden movement, reduced balance, and the wish to appear capable can increase the chance of stumbling.",
+  "challengeTags": ["Time pressure", "Sudden movement", "Wish to seem capable"],
+  "learningPoints": [
+    "Notice how pressure affects safety.",
+    "Encourage calm pacing over rushing.",
+    "Respect the wish to answer it themselves."
+  ],
+  "taskEyebrow": "Door response task",
+  "taskTitle": "Answer the door without rushing.",
+  "taskDescription": "The doorbell just rang and I want to get up and answer it like I always have. But my balance isn't what it used to be, and standing up too fast could throw me off. I need to think before I move too quickly.",
+  "tasks": [
+    {
+      "id": "stool",
+      "label": "Pause first",
+      "correctReason": "Pausing first helps me resist the pressure to rush and gives me time to steady myself.",
+      "warning": "Pausing first helps me avoid a sudden movement. Without it, I might stand too quickly and feel unsteady."
+    },
+    {
+      "id": "walker",
+      "label": "Use walking aid",
+      "correctReason": "Using the walking aid improves my balance before I cross the room toward the door.",
+      "warning": "The walking aid helps, but I still need to pause before moving so I don't rush from the surprise."
+    },
+    {
+      "id": "kettle",
+      "label": "Open door",
+      "correctReason": "Opening the door is safer now because I've paused and moved with support instead of rushing.",
+      "warning": "I rushed straight to the door. The time pressure increased my chance of stumbling before I reached support."
+    }
+  ],
+  "choices": {
+    "stool": "Pause first",
+    "walker": "Use walking aid",
+    "kettle": "Open door"
+  },
+  "actions": {
+    "stool": "Pause first",
+    "walker": "Use walking aid",
+    "kettle": "Open door"
+  },
+  "warnings": {
+    "stool": "Pausing first helps me avoid a sudden movement. Without it, I might stand too quickly and feel unsteady.",
+    "walker": "The walking aid helps, but I still need to pause before moving so I don't rush from the surprise.",
+    "kettle": "I rushed straight to the door. The time pressure increased my chance of stumbling before I reached support."
+  },
+  "correctReasons": {
+    "stool": "Pausing first helps me resist the pressure to rush and gives me time to steady myself.",
+    "walker": "Using the walking aid improves my balance before I cross the room toward the door.",
+    "kettle": "Opening the door is safer now because I've paused and moved with support instead of rushing."
+  },
+  "completion": "Safe sequence completed: I pause, use support, and reach the door without rushing.",
+  "feedbackTitle": "You completed the front door scenario.",
+  "feedback": "Time pressure can make elderly individuals move faster than is safe. The emotional wish to respond normally may compete with physical limitations. Struggling to answer the door like he always has can feel like a small loss of who he is — a caregiver who protects that moment instead of rushing past it helps him trust that slowing down doesn't mean giving something up.",
+  "summary": "Safe door response requires resisting time pressure, using support, and accepting that visitors can wait.",
+  "insight": "A caregiver can reduce pressure by using door cameras, longer ring times, or reminders that it is acceptable to answer slowly or ask visitors to wait.",
+  "impacts": [
+    "Advantage: pausing reduces sudden dizziness or imbalance",
+    "Advantage: walking support makes the journey to the door safer",
+    "Disadvantage: responding slowly may feel embarrassing",
+    "Disadvantage: visitors may need to wait longer"
+  ],
+  "indicatorEffects": {
+    "pressure": 80,
+    "initialState": {
+      "energy": 100,
+      "balance": 52,
+      "kneePain": 70,
+      "confidence": 62,
+      "independence": 60,
+      "safety": 100,
+      "empathy": 60,
+      "pressure": 80
+    },
+    "decisions": {
+      "safe": {
+        "stool": { "energy": -3, "balance": 8, "kneePain": 0, "confidence": 6, "independence": 5, "safety": 10, "empathy": 5, "pressure": -12 },
+        "walker": { "energy": -8, "balance": 18, "kneePain": 1, "confidence": 9, "independence": 6, "safety": 11, "empathy": 3, "pressure": -6 },
+        "kettle": { "energy": -12, "balance": 2, "kneePain": 3, "confidence": 5, "independence": 8, "safety": 7, "empathy": 3, "pressure": -5 }
+      },
+      "unsafe": {
+        "stool": { "energy": -8, "balance": -10, "kneePain": 5, "confidence": -10, "independence": -5, "safety": -16, "empathy": -5, "pressure": 10 },
+        "walker": { "energy": -8, "balance": -8, "kneePain": 6, "confidence": -9, "independence": -5, "safety": -14, "empathy": -4, "pressure": 8 },
+        "kettle": { "energy": -14, "balance": -16, "kneePain": 10, "confidence": -14, "independence": -9, "safety": -24, "empathy": -7, "pressure": 12 }
+      }
+    },
+    "caregiver": {
+      "guided-support": { "energy": 0, "balance": 2, "kneePain": -2, "confidence": 8, "independence": 15, "safety": 8, "empathy": 20, "pressure": -8 },
+      "take-over": { "energy": 5, "balance": 0, "kneePain": -1, "confidence": -10, "independence": -18, "safety": 6, "empathy": -4, "pressure": -4 },
+      "rush": { "energy": -8, "balance": -10, "kneePain": 8, "confidence": -15, "independence": -8, "safety": -18, "empathy": -18, "pressure": 15 }
+    },
+    "sceneEffects": {
+      "stool": { "className": "unsafe-rush", "label": "Moved too fast" },
+      "walker": { "className": "unsafe-rush", "label": "No pause" },
+      "kettle": { "className": "unsafe-fall", "label": "Stumble risk" }
+    }
+  }
+}

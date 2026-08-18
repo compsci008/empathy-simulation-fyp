@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Online Empathy Simulation for Caregivers</title>
+    <link rel="stylesheet" href="styles.css?v=feedback-framing">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="Return to home">
+        <span class="brand-mark" aria-hidden="true">ES</span>
+        <span>
+          <strong>Empathy Simulation</strong>
+          <small>Caregiver learning prototype</small>
+        </span>
+      </a>
+      <nav class="steps" aria-label="Simulation progress">
+        <button class="step-dot is-active" type="button" data-step-dot="home">Home</button>
+        <button class="step-dot" type="button" data-step-dot="intro">Before</button>
+        <button class="step-dot" type="button" data-step-dot="decision">Choose</button>
+        <button class="step-dot" type="button" data-step-dot="readup">Learn</button>
+        <button class="step-dot" type="button" data-step-dot="task">Task</button>
+        <button class="step-dot" type="button" data-step-dot="feedback">Feedback</button>
+        <button class="step-dot" type="button" data-step-dot="reflection">Reflect</button>
+        <button class="step-dot" type="button" data-step-dot="summary">Summary</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="screen is-active" id="home" data-screen="home">
+        <div class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">CM3070 feature prototype</p>
+            <h1>Experience a daily task from an elderly person's perspective.</h1>
+            <p>
+              Live a daily routine through Mr Lim's eyes, then reflect on how to
+              support him without taking over.
+            </p>
+            <div class="hero-actions">
+              <button class="button primary" data-go="intro">Begin simulation</button>
+              <button class="button ghost" data-open-modal="about">Application purpose</button>
+            </div>
+          </div>
+          <div class="scene-panel" aria-label="Illustration of a caregiver supporting an elderly person at home">
+            <img class="hero-image" src="assets/caregiver-elderly-home.png" alt="A smiling caregiver gently supporting an elderly person at home">
+            <p class="scene-caption">Caregiving support should protect safety while preserving dignity and independence.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="intro" data-screen="intro">
+        <div class="layout">
+          <article class="panel">
+            <p class="eyebrow">Before you begin</p>
+            <h2>How this empathy simulation helps caregivers learn.</h2>
+            <div class="intro-section">
+              <h3>Application purpose</h3>
+              <p>
+                Helping family caregivers understand the physical and emotional
+                experience of elderly relatives with mobility limitations.
+              </p>
+              <span class="tag">For: family caregivers of elderly relatives with mobility limitations</span>
+            </div>
+            <div class="intro-section">
+              <h3>How the simulation works</h3>
+              <div class="works-grid">
+                <div>
+                  <strong>1</strong>
+                  <span>Live 4 everyday scenarios as Mr Lim</span>
+                </div>
+                <div>
+                  <strong>2</strong>
+                  <span>Make decisions during each task</span>
+                </div>
+                <div>
+                  <strong>3</strong>
+                  <span>Watch condition indicators change</span>
+                </div>
+                <div>
+                  <strong>4</strong>
+                  <span>Reflect as the caregiver afterward</span>
+                </div>
+              </div>
+              <p class="scope-note">Prototype scope: 4 of the planned scenarios, as a proof of concept — the full system is designed to support more.</p>
+            </div>
+            <button class="button primary" data-go="decision">Continue</button>
+          </article>
+          <aside class="info-list intro-objectives" aria-label="Learning objectives">
+            <h3>Learning objectives</h3>
+            <div class="objective-list">
+              <div>
+                <span>01</span>
+                <p>Understand mobility challenges.</p>
+              </div>
+              <div>
+                <span>02</span>
+                <p>Recognise safer caregiving practices.</p>
+              </div>
+              <div>
+                <span>03</span>
+                <p>Experience the elderly person's perspective.</p>
+              </div>
+              <div>
+                <span>04</span>
+                <p>Reflect on caregiving decisions.</p>
+              </div>
+            </div>
+            <details class="indicator-note">
+              <summary><h3>Indicators used</h3></summary>
+              <div class="indicator-list">
+                <p><strong>Energy</strong> Physical stamina of the elderly person.</p>
+                <p><strong>Balance</strong> Stability while moving.</p>
+                <p><strong>Knee Pain</strong> Level of physical discomfort.</p>
+                <p><strong>Confidence</strong> Confidence to complete tasks independently.</p>
+                <p><strong>Independence</strong> Ability to perform tasks without unnecessary assistance.</p>
+              </div>
+              <p class="score-note intro-score-note">
+                Your decisions influence the condition indicators and Mr Lim's overall outcome score.
+              </p>
+            </details>
+          </aside>
+        </div>
+      </section>
+
+      <section class="screen" id="task" data-screen="task">
+        <div class="layout">
+          <article class="panel">
+            <p class="eyebrow" id="taskEyebrow">Interactive task</p>
+            <h2 id="taskTitle">Reach the kettle safely.</h2>
+            <p id="taskDescription">
+              Click the items in the order Mr. Lim should handle them. The
+              pathway is narrow, so reaching straight for the kettle may create
+              a fall risk.
+            </p>
+            <div class="sim-status" id="simStatus" aria-live="polite">
+              First, inspect the kitchen and choose what to do.
+            </div>
+            <div class="movement-progress" id="movementProgress" hidden aria-hidden="true">
+              <span id="movementProgressBar"></span>
+            </div>
+            <div class="condition-panel" aria-label="Mr Lim condition during task">
+              <div class="condition-head">
+                <h3>Mr Lim's condition</h3>
+                <details class="indicator-help">
+                  <summary>What do these mean?</summary>
+                  <div class="indicator-help-panel">
+                    <p><strong>Energy</strong> Represents the elderly person's remaining physical stamina while completing the activity. Lower values represent greater fatigue.</p>
+                    <p><strong>Balance</strong> Represents physical stability while standing and moving. Lower values indicate greater difficulty maintaining stability and potentially greater fall risk.</p>
+                    <p><strong>Knee Pain</strong> Represents the level of physical discomfort associated with movement. Higher levels indicate greater discomfort.</p>
+                    <p><strong>Confidence</strong> Represents how confident the elderly person may feel about safely completing the activity. Supportive and appropriate caregiving decisions can help maintain confidence.</p>
+                    <p><strong>Independence</strong> Represents the elderly person's ability to participate in or complete the activity without unnecessary caregiver intervention.</p>
+                    <p class="indicator-note"><strong>About the indicators:</strong> These values are simulation variables used to demonstrate the possible consequences of different caregiving decisions. They are educational indicators within the simulation and are not clinical measurements or medical assessments.</p>
+                  </div>
+                </details>
+              </div>
+              <div class="condition-row">
+                <span title="Remaining physical stamina. Lower values mean greater fatigue.">Energy</span>
+                <strong id="taskEnergy">100%</strong>
+                <div class="mini-bar"><span id="taskEnergyBar"></span></div>
+              </div>
+              <div class="condition-row">
+                <span title="Physical stability while standing and moving. Lower values may mean greater fall risk.">Balance</span>
+                <strong id="taskBalance">Medium</strong>
+              </div>
+              <div class="condition-row">
+                <span title="Level of physical discomfort. Higher levels mean greater discomfort.">Knee pain</span>
+                <strong id="taskPain">High</strong>
+              </div>
+              <div class="condition-row">
+                <span title="How confident Mr Lim may feel about completing the activity safely.">Confidence</span>
+                <strong id="taskConfidence">65%</strong>
+                <div class="mini-bar"><span id="taskConfidenceBar"></span></div>
+              </div>
+              <div class="condition-row">
+                <span title="Ability to participate without unnecessary caregiver intervention.">Independence</span>
+                <strong id="taskIndependence">60%</strong>
+                <div class="mini-bar"><span id="taskIndependenceBar"></span></div>
+              </div>
+              <div class="condition-row">
+                <span>Unsafe attempts</span>
+                <strong id="unsafeAttempts">0</strong>
+              </div>
+            </div>
+            <div class="impact-monitor" id="impactMonitor" aria-label="Live simulation impact">
+              <div class="section-title">
+                <h3>Decision impact</h3>
+                <span>live</span>
+              </div>
+              <div class="impact-strip">
+                <div class="impact-meter">
+                  <span>Safety</span>
+                  <strong id="metricSafety">100%</strong>
+                </div>
+                <div class="impact-meter">
+                  <span>Pressure</span>
+                  <strong id="metricPressure">Medium</strong>
+                </div>
+              </div>
+            </div>
+            <div class="caregiver-choice" id="caregiverChoicePanel" hidden>
+              <div class="section-title">
+                <h3>Caregiver move</h3>
+                <span>choose one</span>
+              </div>
+              <div class="caregiver-options" id="caregiverOptions"></div>
+              <div class="caregiver-result" id="caregiverResult" aria-live="polite"></div>
+            </div>
+            <div class="task-actions">
+              <button class="button ghost" type="button" id="resetTask">Reset task</button>
+              <button class="button primary" type="button" id="continueDecision" disabled>View feedback</button>
+            </div>
+          </article>
+          <aside class="kitchen-sim" id="kitchenSim" aria-label="Interactive daily activity simulation">
+            <button class="sim-object sim-stool" type="button" data-sim-action="stool">
+              <span id="actionLabelStool">Move stool</span>
+            </button>
+            <button class="sim-object sim-walker" type="button" data-sim-action="walker">
+              <span id="actionLabelWalker">Use walking aid</span>
+            </button>
+            <button class="sim-object sim-kettle" type="button" data-sim-action="kettle">
+              <span id="actionLabelKettle">Reach kettle</span>
+            </button>
+            <div class="sim-counter" aria-hidden="true"></div>
+            <div class="sim-path" aria-hidden="true"></div>
+            <div class="sim-effect" id="simEffect" aria-hidden="true"></div>
+            <div class="sim-person" id="simPerson" aria-hidden="true">
+              <span class="person-head"></span>
+              <span class="person-body"></span>
+              <span class="person-aid"></span>
+              <span class="person-label">Mr. Lim</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="screen" id="decision" data-screen="decision">
+        <div class="layout">
+          <article class="panel">
+            <p class="eyebrow">Scenario choices</p>
+            <h2>Choose one daily activity to experience.</h2>
+            <p>
+              Each scenario uses a short interaction to show how everyday
+              routines can become slower, more tiring, and more emotionally
+              complex for an elderly person with mobility limitations.
+            </p>
+            <div class="choice-grid" id="scenarioGrid" aria-label="Scenario choices"></div>
+          </article>
+          <aside class="status-card">
+            <h3>Your learning progress</h3>
+            <p>
+              Choose an everyday activity and help Mr Lim complete it safely.
+              Your choices affect his energy, confidence, safety, and independence.
+            </p>
+            <p class="hint">
+              After each activity, you will review what happened and reflect on
+              how a caregiver can support without taking over.
+            </p>
+            <div class="progress-panel" id="progressPanel" hidden></div>
+            <button class="button ghost compact" type="button" id="resetProgress" hidden>Reset progress</button>
+          </aside>
+        </div>
+      </section>
+
+      <section class="screen" id="readup" data-screen="readup">
+        <div class="layout">
+          <article class="panel">
+            <p class="eyebrow">Before this scenario</p>
+            <h2 id="readupTitle">Scenario read-up</h2>
+            <div class="readup-section">
+              <h3>Scenario context</h3>
+              <p id="readupContext"></p>
+            </div>
+            <div class="readup-section">
+              <h3>Why this can be challenging</h3>
+              <div class="tag-row" id="readupChallengeTags"></div>
+            </div>
+            <div class="readup-section">
+              <h3>What to pay attention to</h3>
+              <div class="readup-points" id="readupPoints"></div>
+            </div>
+            <button class="button primary" type="button" id="startScenario">Start Scenario</button>
+          </article>
+          <aside class="info-list readup-objective">
+            <h3>Learning objective</h3>
+            <p id="readupObjective"></p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="screen" id="feedback" data-screen="feedback">
+        <div class="layout">
+          <article class="panel">
+            <p class="eyebrow">Feedback and consequences</p>
+            <h2 id="feedbackTitle">Your choice</h2>
+            <p id="feedbackBody"></p>
+            <div class="impact" id="impactList"></div>
+
+            <div class="feeling-checkin" id="feelingCheckin">
+              <h3>Before you see the score</h3>
+              <p>How did making that decision feel for you?</p>
+              <div class="feeling-options" id="feelingOptions">
+                <button class="feeling-chip" type="button" data-feeling="calm">Calm and steady</button>
+                <button class="feeling-chip" type="button" data-feeling="anxious">Anxious, on edge</button>
+                <button class="feeling-chip" type="button" data-feeling="guilty">Guilty for slowing him down</button>
+                <button class="feeling-chip" type="button" data-feeling="frustrated">Frustrated or impatient</button>
+                <button class="feeling-chip" type="button" data-feeling="uncertain">Unsure I was doing the right thing</button>
+              </div>
+            </div>
+
+            <div class="feedback-reveal" id="feedbackReveal" hidden>
+              <p class="score-context">A summary of the outcome — not the goal. The reflection next matters more.</p>
+              <div class="score-panel" id="scorePanel"></div>
+              <button class="button primary" data-go="reflection">Continue to reflection</button>
+            </div>
+          </article>
+          <aside class="info-list">
+            <h3>Before you reflect</h3>
+            <p id="caregiverPrompt">
+              Consider what support Mr Lim might need while maintaining dignity
+              and independence. You will compare your answer with a suggested
+              caregiver approach after reflection.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="screen" id="reflection" data-screen="reflection">
+        <div class="layout">
+          <article class="panel">
+            <p class="eyebrow">Reflection</p>
+            <h2>Turn the experience into understanding.</h2>
+            <form id="reflectionForm">
+              <label>
+                What part of the task felt most difficult from Mr. Lim's perspective?
+                <textarea name="difficulty" required rows="4"></textarea>
+              </label>
+              <label>
+                How could a caregiver support him while still respecting his independence?
+                <textarea name="support" required rows="4"></textarea>
+              </label>
+              <button class="button primary" type="submit">View learning summary</button>
+            </form>
+          </article>
+          <aside class="info-list">
+            <h3>Reflection prompt</h3>
+            <p>
+              Think about physical barriers and emotional needs — dignity,
+              patience, the desire to remain capable, not just risk.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="screen" id="summary" data-screen="summary">
+        <div class="summary-card">
+          <div class="summary-hero">
+            <div>
+              <p class="eyebrow">Learning summary</p>
+              <h2>Simulation complete</h2>
+            </div>
+            <span class="summary-badge">Caregiver insight unlocked</span>
+          </div>
+          <div class="summary-grid">
+            <div class="lesson-card">
+              <span class="lesson-icon">1</span>
+              <h3>Physical</h3>
+              <p>Small tasks can become tiring and risky.</p>
+            </div>
+            <div class="lesson-card">
+              <span class="lesson-icon">2</span>
+              <h3>Emotional</h3>
+              <p>Help can affect confidence and dignity.</p>
+            </div>
+            <div class="lesson-card">
+              <span class="lesson-icon">3</span>
+              <h3>Caregiver</h3>
+              <p>Support safety without taking over.</p>
+            </div>
+          </div>
+          <div class="reflection-output" id="reflectionOutput"></div>
+          <div class="reflection-output" id="caregiverInsightOutput"></div>
+          <div class="reflection-output" id="progressOutput"></div>
+          <div class="hero-actions">
+            <button class="button primary" data-go="home">Restart prototype</button>
+            <button class="button ghost" onclick="window.print()">Print summary</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="aboutModal">
+      <button class="close" data-close-modal aria-label="Close">×</button>
+      <h2>Application purpose</h2>
+      <p>
+        A short simulation where you experience daily tasks as Mr Lim, an
+        elderly man with mobility difficulties — then decide, as his
+        caregiver, how best to support him without taking over.
+      </p>
+    </dialog>
+
+    <script src="script.js?v=feedback-framing"></script>
+  </body>
+</html>
