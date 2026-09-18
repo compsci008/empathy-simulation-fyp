@@ -1,4 +1,12 @@
 {
+  "name": "empathy-simulation-fyp",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node scripts/seed.js && node server.js"
+  },
   "dependencies": {
     "better-sqlite3": "^13.0.3"
   }
