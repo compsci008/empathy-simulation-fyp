@@ -1,41 +1,59 @@
-// scripts/seed.js
-// One-time import: reads your existing data/scenarios/*.json files (and
-// data/progress.json, if present) and loads them into the SQLite database.
-// Run this once after setting up db.js: node scripts/seed.js
-// Safe to re-run — it overwrites matching rows rather than duplicating them.
-
 const fs = require("fs");
 const path = require("path");
-const { upsertScenario, saveProgress } = require("../db");
+const db = require("../db");
 
-const scenariosDir = path.join(__dirname, "..", "data", "scenarios");
-const progressFile = path.join(__dirname, "..", "data", "progress.json");
+const scenariosDirectory = path.join(
+  __dirname,
+  "..",
+  "data",
+  "scenarios"
+);
 
 function seedScenarios() {
   const files = fs
-    .readdirSync(scenariosDir)
+    .readdirSync(scenariosDirectory)
     .filter((file) => file.endsWith(".json"));
 
+  let importedCount = 0;
+
   files.forEach((file) => {
-    const raw = fs.readFileSync(path.join(scenariosDir, file), "utf8");
-    const scenario = JSON.parse(raw);
-    upsertScenario(scenario);
-    console.log(`Imported scenario: ${scenario.id} (${file})`);
+    const filePath = path.join(
+      scenariosDirectory,
+      file
+    );
+
+    const rawData = fs.readFileSync(
+      filePath,
+      "utf8"
+    );
+
+    const scenario = JSON.parse(rawData);
+
+    db.upsertScenario(scenario);
+
+    console.log(
+      `Imported scenario: ${scenario.id} (${file})`
+    );
+
+    importedCount += 1;
   });
 
-  console.log(`Done. ${files.length} scenario(s) imported.`);
+  console.log(
+    `Done. ${importedCount} scenario(s) imported.`
+  );
 }
 
-function seedProgress() {
-  if (!fs.existsSync(progressFile)) {
-    console.log("No existing progress.json found, skipping progress import.");
-    return;
-  }
-  const raw = fs.readFileSync(progressFile, "utf8");
-  const progress = JSON.parse(raw);
-  saveProgress(progress);
-  console.log("Imported existing progress.json into the database.");
-}
+try {
+  seedScenarios();
 
-seedScenarios();
-seedProgress();
+  console.log(
+    "Scenario database ready."
+  );
+} catch (error) {
+  console.error(
+    "Unable to seed database:",
+    error
+  );
+
+  process.exit(1);
+}
